@@ -1,3 +1,11 @@
+import { Button } from "~/components/ui/button";
+
 export default function Index() {
-  return <div>dasd</div>;
+  return (
+    <div>
+      <div>
+        <Button>Click me</Button>
+      </div>
+    </div>
+  );
 }
