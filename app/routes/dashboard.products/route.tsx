@@ -1,3 +1,8 @@
 export default function route() {
-  return <div>sdas</div>;
+  return (
+    <div>
+      <title>Dashboard | Products</title>
+      <div>sdas</div>
+    </div>
+  );
 }
