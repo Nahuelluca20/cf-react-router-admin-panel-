@@ -1,8 +1,8 @@
 export default function route() {
   return (
     <div>
-      <title>Dashboard | Inventory</title>
-      inventory
+      <title>Dashboard | Home</title>
+      Home
     </div>
   );
 }

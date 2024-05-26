@@ -10,7 +10,9 @@ import {
   ShoppingCart,
   Users,
 } from "lucide-react";
-import { Link, Outlet } from "react-router";
+import { Link, Outlet, redirect } from "react-router";
+import { LoaderFunctionArgs } from "react-router-dom";
+import AsideMenu from "~/components/aside-menu";
 
 import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
@@ -32,16 +34,24 @@ import {
 import { Input } from "~/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "~/components/ui/sheet";
 
-// export const loader = () => {
-//   return null;
-// };
+export const loader = ({ request }: LoaderFunctionArgs) => {
+  const url = new URL(request.url);
+  const pathname = url.pathname;
+  const dashboardPaths = ["/dashboard", "/dashboard/"];
+
+  if (dashboardPaths.includes(pathname)) {
+    return redirect("/home");
+  }
+
+  return null;
+};
 
 export default function Dashboard() {
   return (
     <>
-      <title>Dashboard | Home</title>
       <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
-        <div className="hidden border-r bg-muted/40 md:block">
+        <AsideMenu />
+        {/* <div className="hidden border-r bg-muted/40 md:block">
           <div className="flex h-full max-h-screen flex-col gap-2">
             <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
               <Link to="/" className="flex items-center gap-2 font-semibold">
@@ -56,11 +66,11 @@ export default function Dashboard() {
             <div className="flex-1">
               <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
                 <Link
-                  to="#"
+                  to="home"
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
                 >
                   <Home className="h-4 w-4" />
-                  Dashboard
+                  Home
                 </Link>
                 <Link
                   to="#"
@@ -112,7 +122,7 @@ export default function Dashboard() {
               </Card>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="flex flex-col">
           <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
             <Sheet>
