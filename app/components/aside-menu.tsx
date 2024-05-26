@@ -1,22 +1,6 @@
-import {
-  Badge,
-  Bell,
-  Home,
-  LineChart,
-  Package,
-  Package2,
-  ShoppingCart,
-  Users,
-} from "lucide-react";
+import { Bell, Home, LineChart, Package, Package2, Users } from "lucide-react";
 import { Link, useLocation } from "react-router";
 import { Button } from "./ui/button";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from "./ui/card";
 import { firstLetterUpperCase } from "utils/strings-utils";
 import clsx from "clsx";
 
@@ -74,22 +58,6 @@ export default function AsideMenu() {
               </Link>
             ))}
           </nav>
-        </div>
-        <div className="mt-auto p-4">
-          <Card x-chunk="dashboard-02-chunk-0">
-            <CardHeader className="p-2 pt-0 md:p-4">
-              <CardTitle>Upgrade to Pro</CardTitle>
-              <CardDescription>
-                Unlock all features and get unlimited access to our support
-                team.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="p-2 pt-0 md:p-4 md:pt-0">
-              <Button size="sm" className="w-full">
-                Upgrade
-              </Button>
-            </CardContent>
-          </Card>
         </div>
       </div>
     </div>

@@ -19,6 +19,7 @@
     "@radix-ui/react-slot": "^1.0.2",
     "@react-router/dev": "^0.0.0-experimental-c0856287f",
     "@react-router/server-runtime": "0.0.0-nightly-1974c2661-20240524",
+    "@remix-run/css-bundle": "^2.9.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "isbot": "^5.1.7",
