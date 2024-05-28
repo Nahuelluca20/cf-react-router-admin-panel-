@@ -4,6 +4,7 @@ export type Product = {
   description: string;
   price: string;
   tags: string[];
+  thumbnail: string;
 };
 
 export type CategorySlug = {

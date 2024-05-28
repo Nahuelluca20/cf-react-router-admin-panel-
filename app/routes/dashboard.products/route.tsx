@@ -5,6 +5,7 @@ import {
   useNavigate,
 } from "react-router";
 import { Product, CategorySlug } from "types/product";
+import ProductCard from "~/components/cards/product-card";
 import { Button } from "~/components/ui/button";
 import {
   Select,
@@ -23,9 +24,9 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   let apiProductsUrl = "https://dummyjson.com/products";
 
   if (filterByCategory) {
-    apiProductsUrl = `https://dummyjson.com/products/category/${filterByCategory}?select=title,description,price,tags`;
+    apiProductsUrl = `https://dummyjson.com/products/category/${filterByCategory}?select=title,description,price,tags,thumbnail `;
   } else {
-    apiProductsUrl = `${apiProductsUrl}?select=title,description,price,tags`;
+    apiProductsUrl = `${apiProductsUrl}?select=title,description,price,tags,thumbnail`;
   }
 
   let products: { products: Product[] } = await fetch(apiProductsUrl).then(
@@ -34,7 +35,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
   let categories = await fetch(apiCategoryUrl).then((res) => res.json());
 
-  return json({ products, categories });
+  return json({ products: products.products, categories });
 };
 
 export default function route() {
@@ -58,7 +59,7 @@ export default function route() {
         <h1 className="text-lg font-semibold md:text-2xl">Products</h1>
       </div>
       <div
-        className="flex flex-1 p-4 rounded-lg border border-dashed shadow-sm"
+        className="flex-1 p-4 rounded-lg border border-dashed shadow-sm"
         x-chunk="dashboard-02-chunk-1"
       >
         <div className="flex gap-4 w-full">
@@ -77,6 +78,11 @@ export default function route() {
             </SelectContent>
           </Select>
           <Button onClick={handleClearFilters}>Clear Filters</Button>
+        </div>
+        <div className="mt-10 flex flex-wrap gap-3">
+          {products.map((product) => (
+            <ProductCard {...product} />
+          ))}
         </div>
         {/* <div className="flex flex-col items-center gap-1 text-center">
           <h3 className="text-2xl font-bold tracking-tight">
