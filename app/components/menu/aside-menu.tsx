@@ -1,8 +1,8 @@
 import { Bell, Home, LineChart, Package, Package2, Users } from "lucide-react";
 import { Link, useLocation } from "react-router";
-import { Button } from "./ui/button";
 import { firstLetterUpperCase } from "utils/strings-utils";
 import clsx from "clsx";
+import { Button } from "../ui/button";
 
 export default function AsideMenu() {
   const routesLinks = [
