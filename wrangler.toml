@@ -3,4 +3,4 @@ compatibility_date = "2024-05-24"
 pages_build_output_dir = "./build/client"
 
 [build]
-command = "npm --force && npm run build"
+command = "npm intall --force && npm run build"
