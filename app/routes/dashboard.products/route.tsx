@@ -1,4 +1,9 @@
-import { json, LoaderFunctionArgs, useLoaderData } from "react-router";
+import {
+  json,
+  LoaderFunctionArgs,
+  useLoaderData,
+  useNavigate,
+} from "react-router";
 import { Product, CategorySlug } from "types/product";
 import { Button } from "~/components/ui/button";
 import {
@@ -6,7 +11,6 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "~/components/ui/select";
@@ -34,12 +38,19 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 };
 
 export default function route() {
+  const navigate = useNavigate();
   let { products, categories } = useLoaderData() as {
     products: Product[];
     categories: CategorySlug[];
   };
-  console.log(products);
 
+  const handleChangeFilter = (category: string) => {
+    navigate(`?category=${category}`);
+  };
+
+  const handleClearFilters = () => {
+    navigate("?");
+  };
   return (
     <>
       <title>Dashboard | Products</title>
@@ -47,28 +58,27 @@ export default function route() {
         <h1 className="text-lg font-semibold md:text-2xl">Products</h1>
       </div>
       <div
-        className="flex flex-1 items-center justify-center rounded-lg border border-dashed shadow-sm"
+        className="flex flex-1 p-4 rounded-lg border border-dashed shadow-sm"
         x-chunk="dashboard-02-chunk-1"
       >
-        <Select>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Select a category" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              {categories.map((category) => (
-                <SelectItem
-                  onClick={() => alert(category.name)}
-                  key={category.slug}
-                  value={category.slug}
-                >
-                  {category.name}
-                </SelectItem>
-              ))}
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-        <div className="flex flex-col items-center gap-1 text-center">
+        <div className="flex gap-4 w-full">
+          <Select onValueChange={(value) => handleChangeFilter(value)}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Select a category" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                {categories.map((category) => (
+                  <SelectItem key={category.slug} value={category.slug}>
+                    {category.name}
+                  </SelectItem>
+                ))}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+          <Button onClick={handleClearFilters}>Clear Filters</Button>
+        </div>
+        {/* <div className="flex flex-col items-center gap-1 text-center">
           <h3 className="text-2xl font-bold tracking-tight">
             You have no products
           </h3>
@@ -76,7 +86,7 @@ export default function route() {
             You can start selling as soon as you add a product.
           </p>
           <Button className="mt-4">Add Product</Button>
-        </div>
+        </div> */}
       </div>
     </>
   );
