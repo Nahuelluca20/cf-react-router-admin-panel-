@@ -49,6 +49,7 @@ export default function MobileMenu() {
           {routesLinks.map((route) => (
             <Link
               to={route.route}
+              key={`mobile-link-${route.route}`}
               className={clsx(
                 "mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground",
                 { "bg-muted text-foreground": isRouteActive(route.route) }

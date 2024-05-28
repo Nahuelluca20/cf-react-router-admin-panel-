@@ -47,6 +47,7 @@ export default function AsideMenu() {
           <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
             {routesLinks.map((route) => (
               <Link
+                key={`aside-link-${route.route}`}
                 to={route.route}
                 className={clsx(
                   "flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary",

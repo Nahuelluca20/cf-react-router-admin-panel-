@@ -1,6 +1,32 @@
+import { json, useLoaderData } from "react-router";
+import { Customer } from "types/customers";
 import { Button } from "~/components/ui/button";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "~/components/ui/table";
+
+export const loader = async () => {
+  let customers: { users: Customer[] } = await fetch(
+    "https://dummyjson.com/users?select=firstName,lastName,age,email"
+  ).then((res) => res.json());
+  console.log(customers.users);
+
+  return json({ customers: customers.users, total: customers.users.length });
+};
 
 export default function route() {
+  let { customers, total } = useLoaderData() as {
+    customers: Customer[];
+    total: number;
+  };
+  console.log(customers);
   return (
     <>
       <title>Dashboard | Customers</title>
@@ -11,15 +37,33 @@ export default function route() {
         className="flex flex-1 items-center justify-center rounded-lg border border-dashed shadow-sm"
         x-chunk="dashboard-02-chunk-1"
       >
-        <div className="flex flex-col items-center gap-1 text-center">
-          <h3 className="text-2xl font-bold tracking-tight">
-            You have no products
-          </h3>
-          <p className="text-sm text-muted-foreground">
-            You can start selling as soon as you add a product.
-          </p>
-          <Button className="mt-4">Add Product</Button>
-        </div>
+        <Table>
+          <TableCaption>A list of your recent invoices.</TableCaption>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="w-[200px]">First Name</TableHead>
+              <TableHead>Last Name</TableHead>
+              <TableHead>Age</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {customers.map((customer: Customer) => (
+              <TableRow key={customer.id}>
+                <TableCell className="font-medium">
+                  {customer.firstName}
+                </TableCell>
+                <TableCell>{customer.lastName}</TableCell>
+                <TableCell>{customer.age}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+          <TableFooter>
+            <TableRow>
+              <TableCell colSpan={3}>Total</TableCell>
+              <TableCell className="text-right">{total}</TableCell>
+            </TableRow>
+          </TableFooter>
+        </Table>
       </div>
     </>
   );
