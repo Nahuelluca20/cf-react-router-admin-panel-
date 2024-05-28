@@ -1,6 +1,5 @@
 import { json, useLoaderData } from "react-router";
 import { Customer } from "types/customers";
-import { Button } from "~/components/ui/button";
 import {
   Table,
   TableBody,
@@ -16,7 +15,6 @@ export const loader = async () => {
   let customers: { users: Customer[] } = await fetch(
     "https://dummyjson.com/users?select=firstName,lastName,age,email"
   ).then((res) => res.json());
-  console.log(customers.users);
 
   return json({ customers: customers.users, total: customers.users.length });
 };
@@ -26,7 +24,7 @@ export default function route() {
     customers: Customer[];
     total: number;
   };
-  console.log(customers);
+
   return (
     <>
       <title>Dashboard | Customers</title>
