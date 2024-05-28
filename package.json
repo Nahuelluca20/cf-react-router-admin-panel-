@@ -13,11 +13,9 @@
     "cf-typegen": "wrangler types"
   },
   "dependencies": {
-    "@cloudflare/workers-types": "^4.20240512.0",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-dropdown-menu": "^2.0.6",
     "@radix-ui/react-slot": "^1.0.2",
-    "@react-router/dev": "^0.0.0-experimental-c0856287f",
     "@react-router/server-runtime": "0.0.0-nightly-1974c2661-20240524",
     "@remix-run/css-bundle": "^2.9.2",
     "class-variance-authority": "^0.7.0",
@@ -29,12 +27,14 @@
     "react-router": "0.0.0-nightly-1974c2661-20240524",
     "react-router-dom": "^6.23.1",
     "tailwind-merge": "^2.3.0",
-    "tailwindcss-animate": "^1.0.7",
-    "vite-tsconfig-paths": "^4.3.2"
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240512.0",
+    "@react-router/dev": "^0.0.0-experimental-c0856287f",
     "@types/node": "^20.12.12",
     "@types/react": "npm:types-react@rc",
+    "node-fetch": "^3.3.2",
     "@types/react-dom": "npm:types-react-dom@rc",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
@@ -47,6 +47,7 @@
     "tailwindcss": "^3.4.3",
     "typescript": "^5.2.2",
     "vite": "^5.2.0",
+    "vite-tsconfig-paths": "^4.3.2",
     "wrangler": "3.57.1"
   },
   "overrides": {

@@ -46,8 +46,7 @@ export default function Index() {
             </SheetFooter>
           </SheetContent>
         </Sheet>
-        <Button onClick={() => setCount(count + 1)}>Click me</Button>
-        <Button onClick={() => console.log("dasd")}>Click me</Button>
+        <button onClick={() => setCount(count + 1)}>Click me</button>
       </div>
     </div>
   );

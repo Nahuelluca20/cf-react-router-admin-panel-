@@ -7,7 +7,11 @@ import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
-  plugins: [cloudflareDevProxyVitePlugin(), react(), tsconfigPaths()],
+  plugins: [
+    tsconfigPaths(),
+    cloudflareDevProxyVitePlugin(),
+    react({ ignoredRouteFiles: ["**/*server.ts", "**/*.css?url"] }),
+  ],
   resolve: {
     alias: {
       "~": path.resolve(__dirname, "./app"),
