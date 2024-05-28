@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import {
@@ -16,37 +17,13 @@ export default function Index() {
   const [count, setCount] = useState(0);
 
   return (
-    <div>
+    <div className="max-w-[1024px] w-full mx-auto py-20">
       <title>Admin Panel RR</title>
-      <span>{count}</span>
-      <div>
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button variant="outline">Open</Button>
-          </SheetTrigger>
-          <SheetContent>
-            <SheetHeader>
-              <SheetTitle>Edit profile</SheetTitle>
-              <SheetDescription>
-                Make changes to your profile here. Click save when you're done.
-              </SheetDescription>
-            </SheetHeader>
-            <div className="grid gap-4 py-4">
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Input id="name" value="Pedro Duarte" className="col-span-3" />
-              </div>
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Input id="username" value="@peduarte" className="col-span-3" />
-              </div>
-            </div>
-            <SheetFooter>
-              <SheetClose asChild>
-                <Button type="submit">Save changes</Button>
-              </SheetClose>
-            </SheetFooter>
-          </SheetContent>
-        </Sheet>
-        <button onClick={() => setCount(count + 1)}>Click me</button>
+      <h1 className="text-4xl font-bold text-center">Admin Panel Template</h1>
+      <div className="w-full text-center mt-20">
+        <Link to={"dashboard"} className="text-xl font-medium text-center">
+          Go to dashboard
+        </Link>
       </div>
     </div>
   );
